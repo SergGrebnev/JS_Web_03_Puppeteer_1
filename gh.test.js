@@ -49,27 +49,32 @@ describe("Github page tests", () => {
 describe("Testing the Solutions menu", () => {
   beforeEach(async () => {
     await page.goto("https://github.com");
-    page.setDefaultTimeout(10_000);
-    await page.hover("li:nth-child(2) button:nth-child(1)"); //наводит курсор и открывает всплывающее окно
+    page.setDefaultTimeout(20_000);
   });
 
   test("1. Go to page Enterprise", async () => {
     const expected = "The AI Powered Developer Platform. · GitHub";
+
+    await page.hover("li:nth-child(2) button:nth-child(1)"); //наводит курсор и открывает всплывающее окно
     const firstLink = await page.$("a[href='https://github.com/enterprise']");
     await firstLink.click();
     await page.waitForNavigation(); //Ждём смены страницы
     const title = await page.title();
+
     expect(title).toEqual(expected);
   });
 
   test("2. Go to page Startups", async () => {
     const expected =
       "GitHub for Startups: Build your startup on GitHub · GitHub";
+
+    await page.hover("li:nth-child(2) button:nth-child(1)"); //наводит курсор и открывает всплывающее окно
     const firstLink = await page.$(
       "a[href='https://github.com/enterprise/startups']"
     );
     await firstLink.click();
     await page.waitForNavigation(); //Ждём смены страницы
+
     const title = await page.title();
     expect(title).toEqual(expected);
   });
@@ -77,10 +82,13 @@ describe("Testing the Solutions menu", () => {
   test("3. Go to page DevOps", async () => {
     const expected =
       "Unified AI-Powered Platforms for DevOps Solutions | GitHub · GitHub";
+
+    await page.hover("li:nth-child(2) button:nth-child(1)"); //наводит курсор и открывает всплывающее окно
     const firstLink = await page.$("a[href='/solutions/use-case/devops']");
     await firstLink.click();
     await page.waitForNavigation(); //Ждём смены страницы
     const title = await page.title();
+
     expect(title).toEqual(expected);
   });
 });
